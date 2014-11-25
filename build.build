@@ -4,7 +4,7 @@
     <BuildArtifactsDir Include="BuildArtifacts\" />
     <SolutionFile Include="jenkins-test.sln" />
     <NUnitConsole Include="C:\Program Files (x86)\NUnit 2.6.3\bin\nunit-console.exe" />
-    <UnitTestsDLL Include="BuildArtifacts\Tests.dll" />
+    <UnitTestsDLL Include="BuildArtifacts\jenkins-test.Tests.dll" />
     <TestResultsPath Include="BuildArtifacts\TestResults.xml" />
   </ItemGroup>
 
