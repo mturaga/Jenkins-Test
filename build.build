@@ -1,13 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- ******************************************************************************** -->
-<!-- *********************** Execute the NUnit assemblies *************************** -->
-<!-- ******************************************************************************** -->
-<ItemGroup>
-  <pre style="padding-left: 30px;">
-    <TestAssembly Include="$(BinPathUnitTests)\*.Tests.dll" />
-  </pre>
-</ItemGroup>
-<Target Name="ExecuteNUnit">
-  <Message Text="*** NUnit tests beginning..." />
-  <NUnit Assemblies="@(TestAssembly)" ContinueOnError="false" OutputXmlFile="$(NUnitArtifactFileName).$(NUnitArtifactFileExtension)" ToolPath="$(NUnitPath)" />
-</Target>
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="RunUnitTests">
+  <ItemGroup>
+    <BuildArtifactsDir Include="BuildArtifacts\" />
+    <SolutionFile Include="jenkins-test.sln" />
+    <NUnitConsole Include="C:\Program Files (x86)\NUnit 2.6.3\bin\nunit-console.exe" />
+    <UnitTestsDLL Include="BuildArtifacts\jenkins-test.Tests.dll" />
+    <TestResultsPath Include="BuildArtifacts\TestResults.xml" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <BuildPlatform Condition=" '$(BuildPlatform)' == '' ">Any CPU</BuildPlatform>
+  </PropertyGroup>
+  
+  <Target Name="Clean">
+    <RemoveDir Directories="@(BuildArtifactsDir)" />
+  </Target>
+  
+  <Target Name="Init" DependsOnTargets="Clean">
+    <MakeDir Directories="@(BuildArtifactsDir)" /> 
+  </Target>
+
+  <Target Name="Compile" DependsOnTargets="Init">
+    <MSBuild Projects="@(SolutionFile)"
+             Targets="Rebuild"
+             Properties="OutDir=%(BuildArtifactsDir.FullPath);Configuration=$(Configuration);Platform=$(BuildPlatform)" />
+  </Target>
+
+  <Target Name="RunUnitTests" DependsOnTargets="Compile">
+    <Exec Command='"@(NUnitConsole)" @(UnitTestsDLL) /xml=@(TestResultsPath)' />
+  </Target>
+</Project>
