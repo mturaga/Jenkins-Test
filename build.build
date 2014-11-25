@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- ******************************************************************************** -->
+<!-- *********************** Execute the NUnit assemblies *************************** -->
+<!-- ******************************************************************************** -->
+<ItemGroup>
+  <pre style="padding-left: 30px;">
+    <TestAssembly Include="$(BinPathUnitTests)\*.Tests.dll" />
+  </pre>
+</ItemGroup>
+<Target Name="ExecuteNUnit">
+  <Message Text="*** NUnit tests beginning..." />
+  <NUnit Assemblies="@(TestAssembly)" ContinueOnError="false" OutputXmlFile="$(NUnitArtifactFileName).$(NUnitArtifactFileExtension)" ToolPath="$(NUnitPath)" />
+</Target>
