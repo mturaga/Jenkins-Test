@@ -14,7 +14,7 @@ namespace jenkins_test.Tests
     {
 
         [Test]
-        public void Calc_Add_Test()
+        public void Calc_Add_Test() lorem break
         {
             var actual = jenkins_test.Program.Add(1,1);
             Assert.AreEqual(2, actual);
