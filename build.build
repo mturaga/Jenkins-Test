@@ -5,7 +5,7 @@
     <SolutionFile Include="jenkins-test.sln" />
     <NUnitConsole Include="C:\Program Files (x86)\NUnit 2.6.3\bin\nunit-console.exe" />
     <UnitTestsDLL Include="BuildArtifacts\jenkins-test.Tests.dll" />
-    <!--<TestResultsPath Include="BuildArtifacts\TestResults.xml" />-->
+    <TestResultsPath Include="BuildArtifacts\TestResults.xml" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -28,6 +28,6 @@
   </Target>
 
   <Target Name="RunUnitTests" DependsOnTargets="Compile">
-    <Exec Command='"@(NUnitConsole)" @(UnitTestsDLL)' />
+    <Exec Command='"@(NUnitConsole)" @(UnitTestsDLL) /xml=@(TestResultsPath)' />
   </Target>
 </Project>
