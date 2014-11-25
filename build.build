@@ -3,7 +3,6 @@
   <ItemGroup>
     <BuildArtifactsDir Include="BuildArtifacts\" />
     <SolutionFile Include="jenkins-test.sln" />
-    <SolutionFile Include="jenkins-test.Tests.sln" />
     <NUnitConsole Include="C:\Program Files (x86)\NUnit 2.6.3\bin\nunit-console.exe" />
     <UnitTestsDLL Include="BuildArtifacts\loc.dll" />
     <TestResultsPath Include="BuildArtifacts\TestResults.xml" />
