@@ -18,6 +18,8 @@ namespace jenkins_test.Tests
         {
             var actual = jenkins_test.Program.Add(1,1);
             Assert.AreEqual(2, actual);
+            Assert.AreEqual(2, actual);
+            
         }
     }
 }
