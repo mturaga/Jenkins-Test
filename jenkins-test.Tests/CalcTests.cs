@@ -17,7 +17,7 @@ namespace jenkins_test.Tests
         public void Calc_Add_Test() 
         {
             var actual = jenkins_test.Program.Add(1,1);
-            Assert.AreEqual(2, actual);
+            Assert.AreEqual(4, actual);
             //Assert.AreEqual(1, actual);
             
         }
